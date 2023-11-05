@@ -9,7 +9,6 @@
   <style>
     body {
       font: 14px sans-serif;
-      text-align: center;
     }
   </style>
 </head>
@@ -17,59 +16,61 @@
 <body>
   <?php require "../components/nav.php" ?>
 
-  <form class=" m-5 d-flex flex-column justify-content-evenly align-items-center gap-5 ">
-    <div class="col-md-4">
-      <label for="validationDefault01" class="form-label">First name</label>
-      <input type="text" class="form-control" id="validationDefault01" value="Mark" required>
+  <form class="row g-5 m-5 ">
+
+    <div class="col-12">
+    <label for="fullname" class="form-label">Full Name</label>
+      <input type="text" id="fullname" class="form-control" placeholder="First name" aria-label="First name">
     </div>
-    <div class="col-md-4">
-      <label for="validationDefault02" class="form-label">Last name</label>
-      <input type="text" class="form-control" id="validationDefault02" value="Otto" required>
-    </div>
-    <div class="col-md-4">
-      <label for="validationDefaultUsername" class="form-label">Username</label>
-      <div class="input-group">
-        <span class="input-group-text" id="inputGroupPrepend2">@</span>
-        <input type="text" class="form-control" id="validationDefaultUsername" aria-describedby="inputGroupPrepend2"
-          required>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <label for="validationDefaultemail" class="form-label">Email</label>
-      <div class="input-group">
-        <input type="text" class="form-control" id="validationDefaultemail" aria-describedby="inputGroupPrepend2" required>
-      </div>
-    </div>
-    <div class="col-md-3">
-      <label for="phoneNumber" class="form-label">Phone Number</label>
-      <input type="text" class="form-control" id="phoneNumber" required>
+
+    <div class="col-md-6">
+      <label for="inputEmail4" class="form-label">Email</label>
+      <input type="email" class="form-control" id="inputEmail4">
     </div>
     <div class="col-md-6">
-      <label for="validationDefault03" class="form-label">City</label>
-      <input type="text" class="form-control" id="validationDefault03" required>
+      <label for="phoneNo" class="form-label">Phone Number</label>
+      <input type="text" class="form-control" id="phoneNo">
     </div>
-    <div class="col-md-3">
-      <label for="validationSubject" class="form-label">Subject</label>
-      <select class="form-select" id="validationSubject" required>
-        <option selected disabled value="">Choose...</option>
-        <option>BS Computer Science</option>
-        <option>BS Mathematics</option>
-        <option>BS Chemistry</option>
-        <option>BS Physics</option>
-        <option>BS Botany</option>
+
+    <div class="col-12">
+      <label for="inputAddress" class="form-label">Address</label>
+      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
+    </div>
+
+    <div class="col-12">
+      <label for="inputAddress2" class="form-label">Address 2</label>
+      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
+    </div>
+
+    <div class="col-md-6">
+      <label for="inputCity" class="form-label">City</label>
+      <input type="text" class="form-control" id="inputCity">
+    </div>
+    <div class="col-md-4">
+      <label for="inputState" class="form-label">State</label>
+      <select id="inputState" class="form-select">
+        <option selected>Choose...</option>
+        <option>...</option>
       </select>
     </div>
-    <!-- <div class="col-12">
+    <div class="col-md-2">
+      <label for="inputZip" class="form-label">Zip</label>
+      <input type="text" class="form-control" id="inputZip">
+    </div>
+
+    <div class="col-12">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
-        <label class="form-check-label" for="invalidCheck2">
-          Agree to terms and conditions
+        <input class="form-check-input" type="checkbox" id="gridCheck">
+        <label class="form-check-label" for="gridCheck">
+          Check me out
         </label>
       </div>
-    </div> -->
-    <div class="col-12">
-      <button class="btn btn-primary" type="submit">Submit form</button>
     </div>
+
+    <div class="col-12">
+      <button type="submit" class="btn btn-primary">Sign in</button>
+    </div>
+    
   </form>
 
   <?php require "../components/footer.php" ?>
