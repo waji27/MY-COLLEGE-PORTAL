@@ -27,13 +27,32 @@ if (!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
 
 <body>
     <?php require "../components/nav.php" ?>
-    <h1 class="my-5">Hi, <b>
-            <?php echo htmlspecialchars($_SESSION["username"]); ?>
-        </b>. Welcome to our site.</h1>
-    <p>
-        <a href="reset-password.php" class="btn btn-warning">Reset Your Password</a>
-        <a href="logout.php" class="btn btn-danger ml-3">Sign Out of Your Account</a>
-    </p>
+
+    <h1 class="my-5">Hi, <b> <?php echo htmlspecialchars($_SESSION["username"]); ?></b>. Welcome to our site.</h1>
+
+    <?php require "../components/notifications.php" ?>
+    <?php require "../components/cards.php" ?>
+    <?php require "../components/footer.php" ?>
+
+
+    <script>
+        const displayMessagesDiv = document.getElementById("displayMessages");
+
+        // Retrieve messages from local storage
+        const savedMessages = JSON.parse(localStorage.getItem("messages")) || [];
+
+        savedMessages.forEach((message) => {
+            const messageDiv = document.createElement("div");
+            messageDiv.classList.add("message");
+            messageDiv.innerHTML = `
+                <h3>${message.title}</h3>
+                <p>${message.message}</p>
+            `;
+            displayMessagesDiv.appendChild(messageDiv);
+        });
+    </script>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
