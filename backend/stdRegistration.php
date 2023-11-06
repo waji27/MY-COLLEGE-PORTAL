@@ -1,11 +1,65 @@
+<?php
+
+// Include config file
+require_once "config.php";
+
+if ($_SERVER['REQUEST_METHOD'] == "POST") {
+
+  // $name = "";
+  // $fathername = "";
+  // $email = "";
+  // $phoneNo = "";
+  // $gender = "";
+  // $address = "";
+  // $city = "";
+  // $zip = "";
+  // $subject = "";
+  $name = $_POST['name'];
+  $fathername = $_POST['fathername'];
+  $email = $_POST['email'];
+  $phoneNo = $_POST['phoneNo'];
+  $gender = $_POST['gender'];
+  $address = $_POST['address'];
+  $city = $_POST['city'];
+  $zip = $_POST['zip'];
+  $subject = $_POST['subject'];
+  $terms_accepted = isset($_POST['terms']) ? 1 : 0;
+
+  if (
+    $name != "" || $fathername != "" || $email != "" || $phoneNo != "" || $gender != ""
+    || $address != "" || $city != "" || $zip != "" || $subject != ""
+  ) {
+
+    $query = "INSERT INTO students (name, fathername, email, phoneNo, gender, address, city, zip, subject, terms_accepted) VALUES ('$name', '$fathername', '$email', '$phoneNo', '$gender', '$address', '$city', '$zip', '$subject', $terms_accepted)";
+
+    if (mysqli_query($link, $query)) {
+      echo "Form data has been successfully submitted to the database.";
+    } else {
+      echo "Error: " . $query . "<br>" . mysqli_error($connection);
+    }
+
+  } else {
+    echo "some data missing";
+  }
+
+
+
+
+}
+
+
+
+// mysqli_close($connection);
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <title>Welcome</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <title>Student Registration</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <style>
     body {
       font: 14px sans-serif;
@@ -16,62 +70,69 @@
 <body>
   <?php require "../components/nav.php" ?>
 
-  <form class="row g-5 m-5 ">
-
-    <div class="col-12">
-    <label for="fullname" class="form-label">Full Name</label>
-      <input type="text" id="fullname" class="form-control" placeholder="First name" aria-label="First name">
+  <form class="row g-5 m-3 p-5" method="POST" action="stdRegistration.php">
+    <div class="col-6">
+      <input type="text" id="name" name="name" class="form-control" placeholder="Enter Name" aria-label="First name"
+        required>
     </div>
-
-    <div class="col-md-6">
-      <label for="inputEmail4" class="form-label">Email</label>
-      <input type="email" class="form-control" id="inputEmail4">
+    <div class="col-6">
+      <input type="text" id="fathername" name="fathername" class="form-control" placeholder="Enter Father Name"
+        aria-label="Last name" required>
     </div>
     <div class="col-md-6">
-      <label for="phoneNo" class="form-label">Phone Number</label>
-      <input type="text" class="form-control" id="phoneNo">
+      <input type="email" id="email" name="email" class="form-control" placeholder="Enter Email here" required>
     </div>
-
-    <div class="col-12">
-      <label for="inputAddress" class="form-label">Address</label>
-      <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-    </div>
-
-    <div class="col-12">
-      <label for="inputAddress2" class="form-label">Address 2</label>
-      <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-    </div>
-
     <div class="col-md-6">
-      <label for="inputCity" class="form-label">City</label>
-      <input type="text" class="form-control" id="inputCity">
+      <input type="text" id="phoneNo" name="phoneNo" class="form-control" placeholder="Enter Phone number here"
+        required>
     </div>
-    <div class="col-md-4">
-      <label for="inputState" class="form-label">State</label>
-      <select id="inputState" class="form-select">
-        <option selected>Choose...</option>
-        <option>...</option>
-      </select>
-    </div>
-    <div class="col-md-2">
-      <label for="inputZip" class="form-label">Zip</label>
-      <input type="text" class="form-control" id="inputZip">
-    </div>
-
     <div class="col-12">
       <div class="form-check">
-        <input class="form-check-input" type="checkbox" id="gridCheck">
+        <input class="form-check-input" type="radio" name="gender" id="male" value="Male" required>
+        <label class="form-check-label" for="male">Male</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="female" value="Female" required>
+        <label class="form-check-label" for="female">Female</label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="gender" id="other" value="Other" required>
+        <label class="form-check-label" for="other">Other</label>
+      </div>
+    </div>
+    <div class="col-12">
+      <input type="text" id="inputAddress" name="address" class="form-control" placeholder="Enter Home Address"
+        required>
+    </div>
+    <div class="col-md-6">
+      <input type="text" id="inputCity" name="city" class="form-control" placeholder="City" required>
+    </div>
+    <div class="col-md-6">
+      <input type="text" id="inputZip" name="zip" class="form-control" placeholder="Zip" required>
+    </div>
+    <div class="col-md-6">
+      <select id="inputState" name="subject" class="form-select" required>
+        <option selected disabled>Choose Subject...</option>
+        <option value="BS Computer Science">BS Computer Science</option>
+        <option value="BS Mathematics">BS Mathematics</option>
+        <option value="BS Chemistry">BS Chemistry</option>
+        <option value="BS Physics">BS Physics</option>
+        <option value="BS Botany">BS Botany</option>
+      </select>
+    </div>
+    <div class="col-12">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="terms" id="gridCheck" required>
         <label class="form-check-label" for="gridCheck">
-          Check me out
+          I accept all terms & conditions of SE-College
         </label>
       </div>
     </div>
-
     <div class="col-12">
-      <button type="submit" class="btn btn-primary">Sign in</button>
+      <button type="submit" class="btn btn-primary">Register</button>
     </div>
-    
   </form>
+
 
   <?php require "../components/footer.php" ?>
 
