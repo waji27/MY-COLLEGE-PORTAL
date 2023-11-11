@@ -13,7 +13,7 @@
     <?php require "../components/nav.php" ?>
 
     <div class="card m-5">
-        <h1 class="card-header ">Message Board</h1>
+        <h1 class="card-header ">Notifications Board</h1>
         <div class="card-body d-flex justify-content-center align-items-center flex-column gap-3">
             <input class="card-title" type="text" id="titleInput" placeholder="Enter a title">
             <input class="card-text" type="text" id="messageInput" placeholder="Enter a message">

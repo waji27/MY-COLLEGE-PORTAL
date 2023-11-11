@@ -19,6 +19,7 @@
     <div class="container m-5 d-flex flex-column gap-3 justify-content-evenly align-items-center">
         <img id="output" style=" height: 300px; width: 600px; border:2px solid green;" />
         <input type="text" placeholder="Enter Your Name">
+        <input type="number" placeholder="Enter Your Roll No">
         <input type="date">
         <label for="upload-button" class="btn btn-primary">Pay Challan</label>
     </div>
